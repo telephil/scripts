@@ -12,5 +12,5 @@
 			  #:directory-exists-p)
   (:shadowing-import-from #:cl-github
 			  #:api-command)
-  (:export #:backup))
+  (:export #:backup #:main))
 
