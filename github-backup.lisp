@@ -11,7 +11,7 @@
   (merge-pathnames ".ghbk" (user-homedir-pathname)))
 
 ;;; unix
-(defun exec (pathname command &rest args)
+(defun exec (command args &optional (pathname nil))
   (let* ((out (make-synonym-stream '*standard-output*))
 	 (err (make-synonym-stream '*error-output*))
 	 (process (run-program command args
@@ -25,11 +25,11 @@
 ;;; git
 (defun git-clone (url pathname)
   "Clone GIT repo at URL into pathname directory"
-  (exec *backup-basedir* "git" "clone" url pathname))
+  (exec "git" `("clone" ,url ,pathname) *backup-basedir*))
 
 (defun git-pull (pathname)
   "Pull changes from GIT repo located in pathname directory"
-  (exec pathname "git" "pull"))
+  (exec "git" '("pull") pathname))
 
 ;;; github
 (defun read-access-token ()
@@ -61,3 +61,8 @@
 	     (for url    = (getf repo :GIT-URL))
 	     (unless fork-p
 	       (backup-repository name url)))))
+
+;;; main
+(defun main (argv)
+  (declare (ignore argv))
+  (backup))
