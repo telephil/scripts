@@ -16,7 +16,7 @@
 
 (defun convert-cli (currency argv)
   (unless (= (length argv) 1)
-    (uiop:die 1 "~a: not enough arguments" (uiop:argv0)))
+    (uiop:die 1 "~a: not enough arguments (received ~a)" (uiop:argv0) argv))
   (let ((amount (read-from-string (first argv))))
     (unless (numberp amount)
       (uiop:die 1 "'~a' is not a valid amount" (first argv)))
@@ -24,10 +24,10 @@
 	    (convert currency amount))))
 
 (defun gbp (argv)
-  (convert-cli "GBP" (rest argv)))
+  (convert-cli "GBP" argv))
 
 (defun usd (argv)
-  (convert-cli "USD" (rest argv)))
+  (convert-cli "USD" argv))
 
 (defun main (argv)
   (unless (= (length argv) 2)
