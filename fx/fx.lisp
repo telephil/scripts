@@ -14,16 +14,12 @@
   (let ((rate (get-rate currency)))
     (* rate amount)))
 
-(defun die (message)
-  (format *error-output* message)
-  (sb-ext:exit :code 1))
-
 (defun convert-cli (currency argv)
   (unless (= (length argv) 1)
-    (die "not enough arguments"))
+    (uiop:die 1 "~a: not enough arguments" (uiop:argv0)))
   (let ((amount (read-from-string (first argv))))
     (unless (numberp amount)
-      (die "invalid amount"))
+      (uiop:die 1 "'~a' is not a valid amount" (first argv)))
     (format t "~a~%"
 	    (convert currency amount))))
 
@@ -34,7 +30,7 @@
   (convert-cli "USD" (rest argv)))
 
 (defun main (argv)
-  (let ((argv (rest argv)))
-    (unless (= (length argv) 2)
-      (error "not enough arguments"))
-    (convert-cli (first argv) (rest argv))))
+  (unless (= (length argv) 2)
+    (uiop:die 1 "~a: invalid number of arguments.~%Usage: ~a <CURRENCY> <AMOUNT>~%" (uiop:argv0) (uiop:argv0)))
+  (convert-cli (first argv) (rest argv)))
+
