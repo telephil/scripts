@@ -4,7 +4,7 @@ SYSTEM=github-backup
 SOURCES=github-backup.lisp
 
 all:	${SOURCES}
-	cl-launch -Q --output ${TARGET} --load-system ${SYSTEM} --entry ${SYSTEM}:main
+	cl-launch -Q --dump ! --output ${TARGET} --load-system ${SYSTEM} --entry ${SYSTEM}:main
 
 .PHONY:	clean
 clean:

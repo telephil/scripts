@@ -4,7 +4,7 @@ BIN_DIR=${HOME}/bin
 all:	fx
 
 fx:	fx.lisp
-	cl-launch -Q --output fx --load-system fx -DE /fx:main -DE gbp/fx:gbp -DE usd/fx:usd
+	cl-launch -Q --output fx --dump ! --load-system fx -DE /fx:main -DE gbp/fx:gbp -DE usd/fx:usd
 
 .PHONY:	clean
 clean:

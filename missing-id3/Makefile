@@ -4,7 +4,7 @@ SYSTEM=missing-id3
 SOURCES=missing-id3.lisp
 
 all:	missing-id3.lisp
-	cl-launch -Q --output ${TARGET} --load-system ${SYSTEM} --entry ${SYSTEM}:main
+	cl-launch -Q --dump ! --output ${TARGET} --load-system ${SYSTEM} --entry ${SYSTEM}:main
 
 .PHONY:	clean
 clean:
