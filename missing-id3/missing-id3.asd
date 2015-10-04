@@ -4,8 +4,7 @@
   :description "A small utility script to find all files lacking an ID3"
   :author "Philippe Mechai <philippe.mechai@gmail.com>"
   :license "MIT"
-  :depends-on (#:cl-fad)
+  :depends-on (#:cl-fad #:uiop)
   :serial t
-  :components ((:file "package")
-               (:file "missing-id3")))
+  :components ((:file "missing-id3")))
 

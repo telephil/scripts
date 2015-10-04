@@ -1,4 +1,7 @@
 ;;;; missing-id3.lisp
+(defpackage #:missing-id3
+  (:use #:cl #:cl-fad)
+  (:export #:find-in #:main))
 
 (in-package #:missing-id3)
 
@@ -34,9 +37,6 @@
 
 ;; script api
 (defun main (argv)
-  (unless (= 2 (length argv))
-    (format *error-output*
-	    "Invalid number of arguments.~%Usage: ~a <directory>~%"
-	    (car argv))
-    (sb-ext:exit :code 1))
-  (missing-id3:find-in (second argv)))
+  (unless (= 1 (length argv))
+    (uiop:die 1 "Invalid number of arguments.~%Usage: ~a <directory>~%" (uiop:argv0)))
+  (missing-id3:find-in (first argv)))
