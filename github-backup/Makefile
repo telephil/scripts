@@ -1,15 +1,17 @@
+BINDIR=${HOME}/bin
 TARGET=github-backup
 SYSTEM=github-backup
-SOURCES=github-backup.lisp package.lisp
+SOURCES=github-backup.lisp
 
-all:	${TARGET}
+all:	${SOURCES}
+	cl-launch -Q --output ${TARGET} --load-system ${SYSTEM} --entry ${SYSTEM}:main
 
-${TARGET}:	${SOURCES}
-	buildapp --output ${TARGET} --load-system ${SYSTEM} --entry ${SYSTEM}:main
-
+.PHONY:	clean
 clean:
 	rm -f ${TARGET}
 
+.PHONY:	install
 install:	${TARGET}
-	cp ${TARGET} ${HOME}/bin/
+	cp ${TARGET} ${BINDIR}
+
 

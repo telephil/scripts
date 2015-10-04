@@ -6,6 +6,5 @@
   :license "MIT"
   :depends-on ("iterate" "cl-fad" "cl-github-v3")
   :serial t
-  :components ((:file "package")
-               (:file "github-backup")))
+  :components ((:file "github-backup")))
 
